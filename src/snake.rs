@@ -1,5 +1,6 @@
-use std::collections::VecDeque;
+use std::collections::{VecDeque, vec_deque};
 
+#[derive(PartialEq, Eq)]
 pub struct Pos{
     x: i32,
     y: i32,
@@ -31,5 +32,14 @@ impl Snake{
             current_direction: Direction::Right,
         }
 
+    }
+
+    pub fn move_snake(&mut self){
+
+    }
+
+    // Returns true if some part of the snake it at those coordinates
+    pub fn is_at(&self, x: i32, y: i32) -> bool {
+        self.body.iter().any(|p| p.x == x && p.y == y)
     }
 }
