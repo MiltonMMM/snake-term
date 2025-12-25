@@ -14,7 +14,7 @@ pub enum Direction{
 }
 pub struct Snake{
     body: VecDeque<Pos>,
-    current_direction: Direction,
+    pub current_direction: Direction,
 }
 
 impl Snake{

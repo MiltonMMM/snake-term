@@ -1,4 +1,4 @@
-use crate::snake::Snake;
+use crate::snake::{Direction, Snake};
 use crossterm::style::{Color, SetForegroundColor, ResetColor};
 
 pub struct Game{
@@ -14,8 +14,8 @@ impl Game{
         Self{
             is_running:false,
             snake: Snake::new(),
-            w: 20,
-            h: 20,
+            w: 60,
+            h: 25,
             score: 0,
         }
     }
@@ -27,12 +27,15 @@ impl Game{
 
     }
 
+    pub fn set_direction(&mut self, new_direction: Direction){
+        self.snake.current_direction = new_direction;
+    }
+
     pub fn render(&self){
 
         // top border
         print!("{}", SetForegroundColor(Color::DarkGrey));
-        print!("█");
-        for _ in 0..self.w+1 {
+        for _ in 0..self.w+2 {
             print!("█");
         }
         print!("\r\n");
@@ -59,10 +62,10 @@ impl Game{
         }
 
         // bottom border
-        print!("█");
-        for _ in 0..self.w+1 {
+        for _ in 0..self.w+2 {
             print!("█");
         }
+        print!("\r\n");
     }
 }
 
