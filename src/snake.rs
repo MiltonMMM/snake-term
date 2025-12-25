@@ -1,9 +1,9 @@
 use std::collections::{VecDeque, vec_deque};
 
-#[derive(PartialEq, Eq)]
+#[derive(Copy, Clone, PartialEq, Eq)]
 pub struct Pos{
-    x: i32,
-    y: i32,
+    pub x: i32,
+    pub y: i32,
 }
 
 pub enum Direction{
@@ -35,7 +35,23 @@ impl Snake{
     }
 
     pub fn move_snake(&mut self){
-
+        self.body.pop_back();
+        let mut new_head_pos = *self.body.front().unwrap();
+        match self.current_direction{
+            Direction::Up => {
+                new_head_pos.y -= 1;
+            },
+            Direction::Down =>{
+                new_head_pos.y += 1;
+            },
+            Direction::Right =>{
+                new_head_pos.x += 1;
+            },
+            Direction::Left =>{
+                new_head_pos.x -= 1;
+            },
+        }
+        self.body.push_front(new_head_pos);
     }
 
     // Returns true if some part of the snake it at those coordinates
