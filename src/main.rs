@@ -27,7 +27,7 @@ fn main() -> std::io::Result<()>{
     let tick_duration = Duration::from_millis(100);
     let mut last_tick = Instant::now();
 
-    loop {
+    while game.is_running {
 
         let elapsed = last_tick.elapsed();
 

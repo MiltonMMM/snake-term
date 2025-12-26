@@ -1,4 +1,4 @@
-use std::collections::{VecDeque, vec_deque};
+use std::{collections::VecDeque, env::current_dir};
 
 #[derive(Copy, Clone, PartialEq, Eq)]
 pub struct Pos{
@@ -6,6 +6,7 @@ pub struct Pos{
     pub y: i32,
 }
 
+#[derive(PartialEq)]
 pub enum Direction{
     Up,
     Down,
@@ -13,7 +14,7 @@ pub enum Direction{
     Left,
 }
 pub struct Snake{
-    body: VecDeque<Pos>,
+    pub body: VecDeque<Pos>,
     pub current_direction: Direction,
 }
 
@@ -23,7 +24,7 @@ impl Snake{
 
         let starting_pos_x = 6;
 
-        for i in 0..4{
+        for i in 0..3{
             new_body.push_back(Pos{x: starting_pos_x-i, y: 10});
         }
 
@@ -31,6 +32,16 @@ impl Snake{
             body: new_body,
             current_direction: Direction::Right,
         }
+
+    }
+
+    pub fn has_self_collision(&self) -> bool {
+        let head = self.body.front().expect("empty snake");
+
+        self.body
+        .iter()
+        .skip(1)           // skip the head
+        .any(|p| p == head)
 
     }
 
