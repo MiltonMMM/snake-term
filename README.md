@@ -2,7 +2,7 @@
 
 A simple terminal Snake game written in Rust using `crossterm`.
 
-!["Gameplay screenshot](img/Snake-screenshot.png)
+![](img/snakedemo.gif)
 
 ## Requirements
 - Rust toolchain (stable)

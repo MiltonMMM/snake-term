@@ -90,4 +90,9 @@ impl Snake {
     pub fn is_at(&self, x: i32, y: i32) -> bool {
         self.body.iter().any(|p| p.x == x && p.y == y)
     }
+
+    pub fn is_head_at(&self, x: i32, y: i32) -> bool{
+        let head = self.body.front().expect("empty snake");
+        head.x == x && head.y == y
+    }
 }

@@ -112,7 +112,11 @@ impl Game {
             for x in 0..self.w {
                 if self.snake.is_at(x, y) {
                     print!("{}", SetForegroundColor(Color::Green));
-                    print!("O");
+                    if self.snake.is_head_at(x,y){
+                        print!("O");
+                    }else{
+                        print!("o");
+                    }
                     print!("{}", ResetColor);
                 } else if self.is_apple_at(x, y) {
                     print!("{}", SetForegroundColor(Color::Red));
